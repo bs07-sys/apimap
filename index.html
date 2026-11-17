@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="출발지와 도착지를 검색해 두 장소 사이의 도로 거리를 확인하세요."
+    />
+    <meta name="theme-color" content="#f5f5f7" />
+    <title>어디까지 — 장소 사이의 거리</title>
+    <link rel="preconnect" href="https://nominatim.openstreetmap.org" />
+    <link rel="preconnect" href="https://router.project-osrm.org" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="어디까지 홈">
+        <span class="brand-mark" aria-hidden="true">↗</span>
+        <span>어디까지</span>
+      </a>
+      <span class="header-note">두 장소 사이, 얼마나 멀까요?</span>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">YOUR DISTANCE, AT A GLANCE</p>
+        <h1 id="page-title">어디서 어디까지,<br /><span>한눈에 알아보세요.</span></h1>
+        <p class="hero-copy">
+          장소 이름을 검색하고 실제 도로를 따라<br class="mobile-break" />
+          두 지점 사이의 거리를 확인해 보세요.
+        </p>
+      </section>
+
+      <section class="planner" aria-label="거리 측정">
+        <div class="location-grid">
+          <div class="location-field" data-field="start">
+            <label for="start-input">
+              <span class="field-dot start-dot" aria-hidden="true"></span>
+              출발지
+            </label>
+            <div class="input-row">
+              <input
+                id="start-input"
+                type="search"
+                placeholder="예: 서울역"
+                autocomplete="off"
+                aria-describedby="start-status"
+              />
+              <button class="search-button" type="button" data-search="start">검색</button>
+            </div>
+            <p class="field-status" id="start-status" aria-live="polite">
+              도시, 주소, 장소 이름으로 검색하세요.
+            </p>
+            <div class="results" id="start-results" role="listbox" aria-label="출발지 검색 결과" hidden></div>
+          </div>
+
+          <div class="route-connector" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="location-field" data-field="end">
+            <label for="end-input">
+              <span class="field-dot end-dot" aria-hidden="true"></span>
+              도착지
+            </label>
+            <div class="input-row">
+              <input
+                id="end-input"
+                type="search"
+                placeholder="예: 부산역"
+                autocomplete="off"
+                aria-describedby="end-status"
+              />
+              <button class="search-button" type="button" data-search="end">검색</button>
+            </div>
+            <p class="field-status" id="end-status" aria-live="polite">
+              도시, 주소, 장소 이름으로 검색하세요.
+            </p>
+            <div class="results" id="end-results" role="listbox" aria-label="도착지 검색 결과" hidden></div>
+          </div>
+        </div>
+
+        <div class="planner-footer">
+          <p>검색 결과에서 정확한 장소를 선택해 주세요.</p>
+          <button class="primary-button" id="calculate-button" type="button" disabled>
+            <span id="calculate-label">거리 확인하기</span> <span aria-hidden="true">→</span>
+          </button>
+        </div>
+
+        <div class="message" id="message" role="status" aria-live="polite" hidden></div>
+      </section>
+
+      <section class="distance-card" id="distance-card" aria-live="polite" hidden>
+        <p class="result-label">두 장소 사이의 도로 거리</p>
+        <p class="distance-value"><span id="distance-value">—</span><span class="distance-unit">km</span></p>
+        <p class="route-summary" id="route-summary"></p>
+        <a class="map-link" id="map-link" href="#" target="_blank" rel="noopener noreferrer">
+          지도에서 보기 <span aria-hidden="true">↗</span>
+        </a>
+      </section>
+
+      <p class="attribution">
+        장소 검색 © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap 기여자</a>
+        · 경로 안내 © <a href="https://project-osrm.org/" target="_blank" rel="noopener noreferrer">OSRM</a>
+      </p>
+    </main>
+
+    <footer class="site-footer">
+      <span>간단하게 검색하고, 가볍게 확인하세요.</span>
+      <span>지도 데이터 © OpenStreetMap</span>
+    </footer>
+  </body>
+</html>

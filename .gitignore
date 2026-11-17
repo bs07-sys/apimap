@@ -1,0 +1,14 @@
+# Local environment files and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets.json
+
+# Local tooling and generated files
+.vercel/
+node_modules/
+dist/
+coverage/
+Thumbs.db
